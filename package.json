@@ -1,0 +1,33 @@
+{
+  "name": "zanalyze",
+  "keywords": "redis, zset, zset mean, zset stddev",
+  "description": "Print basic stats from a Redis ZSET",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexanderscott/zanalyze.git"
+  },
+  "private": false,
+  "author": "Alex Ehrnschwender <alexanderscott46@gmail.com> ()",
+  "dependencies": {
+    "commander": "^2.6.0",
+    "fast-stats": "0.0.2",
+    "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "main": "index",
+  "bin": {
+    "zanalyze": "./bin/zanalyze"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/alexanderscott/zanalyze/raw/master/LICENSE"
+    }
+  ]
+}
