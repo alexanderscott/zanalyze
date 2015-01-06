@@ -1,5 +1,5 @@
 # zanalyze
-Print basic stats about a Redis ZSET:
+Print basic stats and histogram plot for a Redis ZSET:
  - # of members
  - min
  - max
@@ -9,25 +9,68 @@ Print basic stats about a Redis ZSET:
  - 90th, 95th, 99th percentiles
  - geometric mean & std. dev.
  - margin of error
+ - histogram plot (via gnuplot)
 
 
 ## Install
     
+    brew install gnuplot --with-x
     npm install -g zanalyze
 
 ## Usage
     
 ```
-  Usage: zanalyze [options] <key>
+  Usage: index [options] <key>
 
   Options:
 
-    -h, --help         output usage information
-    -V, --version      output the version number
-    -p, --port [port]  Redis port
-    -h, --host [host]  Redis host
+    -h, --help               output usage information
+    -V, --version            output the version number
+    -p, --port [port]        Redis port
+    -h, --host [host]        Redis host
+    -b, --buckets [buckets]  Number of histogram buckets
 ```
 
+## Example
+```
+$ node test/normal-curve.js test_zset
+$ node index.js test_zset
+Members:               3940
+Min:                   -270.6858684774488 (9734)
+Max:                   273.20951470173895 (7880)
+Mean:                  2.5423567979667467
+StdDev:                100.71556709669699
+Median:                5.273612542077899
+90th Percentile:       135.47056117095053
+95th Percentile:       164.3777091987431
+99th Percentile:       216.59192368388176
+Mean (geometric):      NaN
+StdDev (geometric):    NaN
+Margin of Error:       3.1448835068475542
+
+
+                              ZSET Plot: test_zset
+            +     +    +     +     +     +    +     +     +     +    +
+  800 ++----+-----+----+-----+-----+-----**---+-----+-----+-----+----+----++
+      |                            ***   **                                |
+  700 ++                           * *   **   ***                         ++
+      |                            * *   **   * *                          |
+  600 ++                           * *   **   * *                         ++
+      |                      ***   * *   **   * *                          |
+  500 ++                     * *   * *   **   * *                         ++
+      |                      * *   * *   **   * *                          |
+  400 ++               ***   * *   * *   **   * *   ***                   ++
+      |                * *   * *   * *   **   * *   * *                    |
+  300 ++               * *   * *   * *   **   * *   * *                   ++
+      |                * *   * *   * *   **   * *   * *                    |
+  200 ++               * *   * *   * *   **   * *   * *                   ++
+      |           **   * *   * *   * *   **   * *   * *   ***              |
+  100 ++          **   * *   * *   * *   **   * *   * *   * *             ++
+      |     ***   **   * *   * *   * *   **   * *   * *   * *   **         |
+    0 ++----***---**---***---***---***---**---***---***---***---**---***--++
+            +     +    +     +     +     +    +     +     +     +    +
+          -244  -190 -135   -81   -27   27   81    135   190   244  299
+                                   Bucket Mean
 
 ## License
 
