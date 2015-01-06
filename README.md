@@ -20,7 +20,7 @@ Print basic stats and histogram plot for a Redis ZSET:
 ## Usage
     
 ```
-  Usage: index [options] <key>
+  Usage: zanalyze [options] <key>
 
   Options:
 
@@ -34,7 +34,7 @@ Print basic stats and histogram plot for a Redis ZSET:
 ## Example
 ```
 $ node test/normal-curve.js test_zset
-$ node index.js test_zset
+$ bin/zanalyze test_zset
 Members:               3940
 Min:                   -270.6858684774488 (9734)
 Max:                   273.20951470173895 (7880)
@@ -71,6 +71,7 @@ Margin of Error:       3.1448835068475542
             +     +    +     +     +     +    +     +     +     +    +
           -244  -190 -135   -81   -27   27   81    135   190   244  299
                                    Bucket Mean
+```
 
 ## License
 
